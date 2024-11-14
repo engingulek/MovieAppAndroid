@@ -21,11 +21,10 @@
         tools:context=".ui.home.HomeFragment">
 
         <TextView
-            android:id="@+id/movieTitleTxt"
+            android:id="@+id/appTitleTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="My Movies"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -62,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
-            android:text="Show All"
+            android:text="@string/show_all"
             android:textColor="@color/secondaryTextViewColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/categoryRyc" />
@@ -73,7 +72,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:text="TitleTest"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -91,7 +89,7 @@
             android:background="@drawable/rounded_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieTitleTxt" />
+            app:layout_constraintTop_toBottomOf="@+id/appTitleTxt" />
 
 
 
@@ -101,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:text="Categories"
+
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -124,7 +122,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:text="TextView"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -148,7 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="16dp"
-            android:text="Show All"
+            android:text="@string/show_all"
             android:textColor="@color/secondaryTextViewColor"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
