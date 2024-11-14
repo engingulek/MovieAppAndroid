@@ -1,26 +1,35 @@
 package com.example.movieapp.ui.home
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.movieapp.R
+import com.example.movieapp.ui.home.models.Category
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.lang.ref.WeakReference
+import javax.inject.Inject
 
 interface  HomeViewModelInterface {
+    var categories :MutableLiveData<List<Category>>
+    var titles:Titles
 
 
 }
-
-class HomeViewModel( val view: HomeFragmentInterface) :
+@HiltViewModel
+class HomeViewModel @Inject constructor (private val service:HomeViewServiceInterface,
+                                        ) :
     ViewModel(),HomeViewModelInterface {
-    private val viewReference = WeakReference(view)
-        init {
 
-            viewReference.get()?.setTitle(
-                R.string.app_name,
-                R.string.categoryTitle,
-                R.string.trendTitle,
-                R.string.forYouTitle
-            )
-            viewReference.get()?.configureAdapters()
+    override var categories = MutableLiveData<List<Category>>()
+    override var titles = Titles(R.string.app_name,R.string.categoryTitle,R.string.trendTitle,R.string.forYouTitle)
+
+
+    init {
+        getCategories()
+
         }
+
+    private fun getCategories() {
+       categories.value = service.fetchCategories()
+    }
 
 }
