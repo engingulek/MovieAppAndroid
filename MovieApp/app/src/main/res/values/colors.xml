@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="backColor">#0B192C</color>
     <color name="secondaryTextViewColor">#FF6500</color>
+    <color name="secondaryBackColor">#F5F5F7</color>
 </resources>

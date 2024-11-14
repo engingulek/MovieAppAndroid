@@ -4,49 +4,156 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="adapter"
-            type="com.example.movieapp.ui.home.TrendingMovieAdapter" />
+            name="trendingMovieAdapter"
+            type="com.example.movieapp.ui.home.adapters.TrendingMovieAdapter" />
+        <variable
+            name="categoryAdapter"
+            type="com.example.movieapp.ui.home.adapters.CategoryAdapter" />
+        <variable
+            name="forYouAdapter"
+            type="com.example.movieapp.ui.home.adapters.ForYouMovieAdapter" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/backColor"
-    tools:context=".ui.home.HomeFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/trendingMovieRyc"
-        android:layout_width="0dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="10dp"
-        android:adapter="@{adapter}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trendingTitleTxt" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backColor"
+        tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/trendingTitleTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:text="TitleTest"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/movieTitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="My Movies"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/trendingshowAllTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:text="Show All"
-        android:textColor="@color/secondaryTextViewColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/trendingMovieRyc"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:adapter="@{trendingMovieAdapter}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trendingTitleTxt" />
+
+        <TextView
+            android:id="@+id/categoriesshowAllTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="@string/show_all"
+            android:textColor="@color/secondaryTextViewColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieSearchView" />
+
+        <TextView
+            android:id="@+id/trendingshowAllTxt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="Show All"
+            android:textColor="@color/secondaryTextViewColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryRyc" />
+
+        <TextView
+            android:id="@+id/trendingTitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="TitleTest"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryRyc" />
+
+        <SearchView
+            android:id="@+id/movieSearchView"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieTitleTxt" />
+
+
+
+        <TextView
+            android:id="@+id/categoryTitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Categories"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieSearchView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRyc"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:adapter="@{categoryAdapter}"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryTitleTxt" />
+
+        <TextView
+            android:id="@+id/forYouTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trendingMovieRyc" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/forYouRyc"
+            android:layout_width="0dp"
+            android:adapter="@{forYouAdapter}"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/forYouTitle" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="16dp"
+            android:text="Show All"
+            android:textColor="@color/secondaryTextViewColor"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trendingMovieRyc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
