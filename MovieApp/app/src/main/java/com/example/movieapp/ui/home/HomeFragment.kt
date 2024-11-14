@@ -17,7 +17,7 @@ import com.example.movieapp.ui.home.adapters.CategoryAdapter
 import com.example.movieapp.ui.home.adapters.ForYouMovieAdapter
 import com.example.movieapp.ui.home.adapters.TrendingMovieAdapter
 
-    fun configureAdapters()
+
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var design : FragmentHomeBinding
