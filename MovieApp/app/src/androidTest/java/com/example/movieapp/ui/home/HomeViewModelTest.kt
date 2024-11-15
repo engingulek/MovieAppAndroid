@@ -23,8 +23,5 @@ class HomeViewModelTest {
         assertEquals(R.string.categoryTitle, viewModel.titles.categoryTitle)
         assertEquals(R.string.trendTitle, viewModel.titles.trendTitle)
         assertEquals(R.string.forYouTitle, viewModel.titles.forYouTitle)
-
-
-
     }
 }

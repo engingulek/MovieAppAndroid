@@ -29,7 +29,7 @@ class HomeViewModel @Inject constructor (private val service:HomeViewServiceInte
         }
 
     private fun getCategories() {
-      // categories.value = service.fetchCategories()
+        categories = service.fetchCategories()
     }
 
 }
