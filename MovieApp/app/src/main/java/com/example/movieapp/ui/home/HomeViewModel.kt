@@ -15,6 +15,8 @@ import javax.inject.Inject
 interface  HomeViewModelInterface {
     var categories :MutableLiveData<List<Category>>
     var titles:Titles
+    fun onClickCategory(id:Int)
+    fun categoryDesignType(id:Int) : Pair<Int,Int>
 
 
 }
@@ -25,18 +27,27 @@ class HomeViewModel @Inject constructor (private val service:HomeViewServiceInte
 
     override var categories = MutableLiveData<List<Category>>()
     override var titles = Titles(R.string.app_name,R.string.categoryTitle,R.string.trendTitle,R.string.forYouTitle)
-
+    var selectedCategoryId:Int
 
     init {
-        getCategories()
-
-        }
-
-    private fun getCategories() {
         service.fetchCategories()
         categories = service.getCategories()
+        selectedCategoryId = categories.value?.first()?.id ?: 1
+        }
 
-
+    override fun onClickCategory(id: Int) {
+       selectedCategoryId = id
     }
 
+    override fun categoryDesignType(id: Int): Pair<Int, Int> {
+        val design:Pair<Int,Int>
+        if(selectedCategoryId == id) {
+            design = Pair(R.color.secondaryTextViewColor,R.color.white)
+            Log.e("${id}","${design.first} ${design.second}")
+        }else{
+            design = Pair(R.color.secondaryBackColor,R.color.black)
+            Log.e("${id}","${design.first} ${design.second}")
+        }
+        return  design
+    }
 }

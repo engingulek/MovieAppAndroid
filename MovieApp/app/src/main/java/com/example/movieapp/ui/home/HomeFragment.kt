@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
   private fun configureAdapters() {
         design.trendingMovieRyc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
       viewModel.categories.observe(viewLifecycleOwner){
-          val categoryAdapter = CategoryAdapter(requireContext(),it)
+          val categoryAdapter = CategoryAdapter(requireContext(),it,viewModel)
           design.categoryAdapter = categoryAdapter
       }
         val trendingMovieAdapter = TrendingMovieAdapter(requireContext())
