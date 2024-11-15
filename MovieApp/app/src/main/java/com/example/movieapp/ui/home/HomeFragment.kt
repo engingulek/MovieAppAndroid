@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +18,8 @@ import com.example.movieapp.databinding.FragmentHomeBinding
 import com.example.movieapp.ui.home.adapters.CategoryAdapter
 import com.example.movieapp.ui.home.adapters.ForYouMovieAdapter
 import com.example.movieapp.ui.home.adapters.TrendingMovieAdapter
+import com.example.movieapp.ui.search.SearchFragment
+import com.example.movieapp.utils.toFragment
 
 
 @AndroidEntryPoint
@@ -32,6 +36,25 @@ class HomeFragment : Fragment() {
 
         configureAdapters()
         setTitles()
+
+        design.movieSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return  false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    viewModel.searchViewOnQueryTextListener(it)
+                }
+                return true
+            }
+        })
+
+        viewModel.navSearchFragmentState.observe(viewLifecycleOwner){
+            if (it) {
+                val nav = HomeFragmentDirections.toSearchFragment(viewModel.searchText)
+                Navigation.toFragment(requireView(),nav)
+            }
+        }
 
         return  design.root
     }
@@ -62,7 +85,6 @@ class HomeFragment : Fragment() {
 
         design.categoryRyc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
-
         design.forYouRyc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         val forYouAdapter = ForYouMovieAdapter(requireContext())
         design.forYouAdapter = forYouAdapter
@@ -71,3 +93,5 @@ class HomeFragment : Fragment() {
 
 
 }
+
+

@@ -15,8 +15,12 @@ import javax.inject.Inject
 interface  HomeViewModelInterface {
     var categories :MutableLiveData<List<Category>>
     var titles:Titles
+    var navSearchFragmentState:MutableLiveData<Boolean>
+    var searchText:String
     fun onClickCategory(id:Int)
     fun categoryDesignType(id:Int) : Pair<Int,Int>
+    fun searchViewOnQueryTextListener(text:String)
+
 
 
 }
@@ -27,12 +31,17 @@ class HomeViewModel @Inject constructor (private val service:HomeViewServiceInte
 
     override var categories = MutableLiveData<List<Category>>()
     override var titles = Titles(R.string.app_name,R.string.categoryTitle,R.string.trendTitle,R.string.forYouTitle)
+    override var navSearchFragmentState: MutableLiveData<Boolean>
+    override var searchText:String
+
    private var selectedCategoryId:Int
 
     init {
         service.fetchCategories()
         categories = service.getCategories()
         selectedCategoryId = categories.value?.first()?.id ?: 1
+        navSearchFragmentState = MutableLiveData(false)
+        searchText = ""
         }
 
     override fun onClickCategory(id: Int) {
@@ -47,5 +56,14 @@ class HomeViewModel @Inject constructor (private val service:HomeViewServiceInte
             design = Pair(R.color.secondaryBackColor,R.color.black)
         }
         return  design
+    }
+
+    override fun searchViewOnQueryTextListener(text: String) {
+        if (text.count() > 3){
+            searchText = text
+            navSearchFragmentState.value = true
+            searchText = ""
+            navSearchFragmentState.value = false
+        }
     }
 }
