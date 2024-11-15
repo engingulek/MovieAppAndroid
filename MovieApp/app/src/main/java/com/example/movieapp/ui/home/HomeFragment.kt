@@ -53,12 +53,15 @@ class HomeFragment : Fragment() {
 
   private fun configureAdapters() {
         design.trendingMovieRyc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+      viewModel.categories.observe(viewLifecycleOwner){
+          val categoryAdapter = CategoryAdapter(requireContext(),it)
+          design.categoryAdapter = categoryAdapter
+      }
         val trendingMovieAdapter = TrendingMovieAdapter(requireContext())
         design.trendingMovieAdapter = trendingMovieAdapter
 
         design.categoryRyc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        val categoryAdapter = CategoryAdapter(requireContext())
-        design.categoryAdapter = categoryAdapter
+
 
         design.forYouRyc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         val forYouAdapter = ForYouMovieAdapter(requireContext())

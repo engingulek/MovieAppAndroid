@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.databinding.CategoryDesignBinding
 import com.example.movieapp.databinding.MoviePosterDesignBinding
+import com.example.movieapp.ui.home.models.Category
 
-class CategoryAdapter (var mContext: Context)
+class CategoryAdapter (var mContext: Context,var list: List<Category>)
     : RecyclerView.Adapter<CategoryAdapter.CategoryDesignKeeper>() {
     inner class  CategoryDesignKeeper(design: CategoryDesignBinding)
         : RecyclerView.ViewHolder(design.root){
@@ -31,10 +32,10 @@ class CategoryAdapter (var mContext: Context)
     }
 
     override fun getItemCount(): Int {
-        return  10
+        return  list.count()
     }
 
     override fun onBindViewHolder(holder: CategoryDesignKeeper, position: Int) {
-
+        holder.design.category = list[position]
     }
 }
