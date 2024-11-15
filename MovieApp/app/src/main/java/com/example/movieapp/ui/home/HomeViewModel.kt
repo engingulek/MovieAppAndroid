@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor (private val service:HomeViewServiceInte
 
     override var categories = MutableLiveData<List<Category>>()
     override var titles = Titles(R.string.app_name,R.string.categoryTitle,R.string.trendTitle,R.string.forYouTitle)
-    var selectedCategoryId:Int
+   private var selectedCategoryId:Int
 
     init {
         service.fetchCategories()
@@ -43,10 +43,8 @@ class HomeViewModel @Inject constructor (private val service:HomeViewServiceInte
         val design:Pair<Int,Int>
         if(selectedCategoryId == id) {
             design = Pair(R.color.secondaryTextViewColor,R.color.white)
-            Log.e("${id}","${design.first} ${design.second}")
         }else{
             design = Pair(R.color.secondaryBackColor,R.color.black)
-            Log.e("${id}","${design.first} ${design.second}")
         }
         return  design
     }
