@@ -1,5 +1,7 @@
 package com.example.movieapp.di
 
+import com.example.movieapp.retrofit.ApiService
+import com.example.movieapp.retrofit.ApiUtils
 import com.example.movieapp.ui.home.HomeFragment
 
 import com.example.movieapp.ui.home.HomeViewService
@@ -17,8 +19,14 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideHomeViewService(): HomeViewServiceInterface {
-        val service:HomeViewServiceInterface = HomeViewService()
+    fun provideHomeViewService(apiService: ApiService): HomeViewServiceInterface {
+        val service:HomeViewServiceInterface = HomeViewService(apiService)
         return service
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiService() : ApiService {
+        return  ApiUtils.createService()
     }
 }
