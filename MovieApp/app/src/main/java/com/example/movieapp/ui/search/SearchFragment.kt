@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentSearchBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
     private lateinit var design:FragmentSearchBinding
     private lateinit var viewModel:SearchViewModelInterface
@@ -27,8 +30,30 @@ class SearchFragment : Fragment() {
         design.searchView.isIconified = false
         design.searchRyc.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.VERTICAL,false)
-        val searchAdapter = SearchAdapter(requireContext())
-        design.searchAdapter = searchAdapter
+
+        viewModel.resultMovieList.observe(viewLifecycleOwner){
+            val searchAdapter = SearchAdapter(requireContext(),it.first)
+
+            design.searchAdapter = searchAdapter
+        }
+
+        design.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return  false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    viewModel.getSearchText(it)
+                }
+                return true
+            }
+        })
+
+        viewModel.message.observe(viewLifecycleOwner){
+            design.message = getString(it.first)
+            design.messageState = it.second
+
+        }
         return design.root
     }
 
@@ -37,7 +62,4 @@ class SearchFragment : Fragment() {
         val tempViewModel: SearchViewModelInterface by viewModels<SearchViewModel>()
         viewModel = tempViewModel
     }
-
-
-
 }

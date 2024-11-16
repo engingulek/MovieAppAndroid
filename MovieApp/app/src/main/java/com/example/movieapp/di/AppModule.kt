@@ -6,6 +6,8 @@ import com.example.movieapp.ui.home.HomeFragment
 
 import com.example.movieapp.ui.home.HomeViewService
 import com.example.movieapp.ui.home.HomeViewServiceInterface
+import com.example.movieapp.ui.search.SearchFragmentService
+import com.example.movieapp.ui.search.SearchFragmentServiceInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,6 +25,15 @@ class AppModule {
         val service:HomeViewServiceInterface = HomeViewService(apiService)
         return service
     }
+
+
+    @Provides
+    @Singleton
+    fun provideSearchFragmentService(apiService: ApiService) : SearchFragmentServiceInterface {
+        val service : SearchFragmentServiceInterface = SearchFragmentService(apiService)
+        return  service
+    }
+
 
     @Provides
     @Singleton

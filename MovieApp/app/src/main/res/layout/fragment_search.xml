@@ -6,12 +6,33 @@
         <variable
             name="searchAdapter"
             type="com.example.movieapp.ui.search.SearchAdapter" />
+        <import type="android.view.View"/>
+        <variable
+            name="messageState"
+            type="Boolean" />
+        <variable
+            name="message"
+            type="String" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backColor"
     tools:context=".ui.search.SearchFragment">
+
+    <TextView
+        android:id="@+id/messageTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{message}"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="@{messageState ? View.VISIBLE : View.INVISIBLE}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SearchView
         android:id="@+id/searchView"
