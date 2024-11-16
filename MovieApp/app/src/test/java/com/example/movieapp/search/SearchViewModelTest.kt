@@ -77,39 +77,5 @@ class SearchViewModelTest {
         )
     }
 
-   /* @Test
-    fun `when search returns results, message should be emptyDefault`() {
-
-        mockService.emptyResultListState = false
-        mockService.responseCode = 200
-        viewModel.getSearchText("test")
-
-        verify(mockObserver).onChanged(Pair( R.string.emptyDefault ,false))
-    }*/
-
-   /* */
-
-
-
-   /* @Test
-    fun `when search text is empty, message should be emptyDefault`() {
-
-        viewModel.getSearchText("")
-
-        verify(mockObserver).onChanged(Pair(R.string.emptyDefault,false))
-    }
-
-    @Test
-    fun `when search text is empty and result error, message should be emptyDefault`() {
-        mockService.emptyResultListState = true
-        mockService.responseCode = 404
-        viewModel.getSearchText("nnnjnj")
-
-
-        verify(mockObserver).onChanged(Pair(R.string.emptyDefault,false))
-    }*/
-
-
-
 
 }

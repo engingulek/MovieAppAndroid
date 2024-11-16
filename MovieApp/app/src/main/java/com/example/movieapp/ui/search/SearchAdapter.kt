@@ -4,10 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.databinding.SearchMoviePosterDesignBinding
+import com.example.movieapp.ui.home.HomeFragmentDirections
 import com.example.movieapp.utils.PicassoImage
+import com.example.movieapp.utils.toFragment
 
 class SearchAdapter(var mContext:Context,var list:List<Movie>)
     :RecyclerView.Adapter<SearchAdapter.SearchDesignKeeper>(){
@@ -40,5 +43,10 @@ class SearchAdapter(var mContext:Context,var list:List<Movie>)
         PicassoImage.covertToPicasso(movie.imageURL,holder.design.movieImage)
         holder.design.categoryTxt.text = movie.categories.joinToString(", ")
         holder.design.movieInfoTxt.text = movie.info
+        holder.design.searchCardView.setOnClickListener {
+            val nav = SearchFragmentDirections.toDetailFromSearch(1)
+            Navigation.toFragment(it,nav)
+
+        }
     }
 }

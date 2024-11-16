@@ -4,9 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.databinding.MoviePosterDesignBinding
+import com.example.movieapp.ui.home.HomeFragmentDirections
+import com.example.movieapp.utils.toFragment
 
 class TrendingMovieAdapter(var mContext: Context)
     : RecyclerView.Adapter<TrendingMovieAdapter.MoviePosterDesignKeeper>() {
@@ -35,5 +38,9 @@ class TrendingMovieAdapter(var mContext: Context)
 
     override fun onBindViewHolder(holder: MoviePosterDesignKeeper, position: Int) {
 
+        holder.design.cardView.setOnClickListener {
+            val nav = HomeFragmentDirections.toDetailFromHome(1)
+            Navigation.toFragment(it,nav)
+        }
     }
 }

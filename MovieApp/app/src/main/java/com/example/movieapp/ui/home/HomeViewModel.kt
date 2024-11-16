@@ -23,6 +23,7 @@ interface  HomeViewModelInterface {
 
 
 
+
 }
 @HiltViewModel
 class HomeViewModel @Inject constructor (private val service:HomeViewServiceInterface,
@@ -32,6 +33,9 @@ class HomeViewModel @Inject constructor (private val service:HomeViewServiceInte
     override var categories = MutableLiveData<List<Category>>()
     override var titles = Titles(R.string.app_name,R.string.categoryTitle,R.string.trendTitle,R.string.forYouTitle)
     override var navSearchFragmentState: MutableLiveData<Boolean>
+
+
+
     override var searchText:String
 
    private var selectedCategoryId:Int
@@ -42,6 +46,7 @@ class HomeViewModel @Inject constructor (private val service:HomeViewServiceInte
         selectedCategoryId = categories.value?.first()?.id ?: 1
         navSearchFragmentState = MutableLiveData(false)
         searchText = ""
+
         }
 
     override fun onClickCategory(id: Int) {
