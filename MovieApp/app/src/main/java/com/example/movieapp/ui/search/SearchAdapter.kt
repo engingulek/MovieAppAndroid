@@ -7,8 +7,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.databinding.SearchMoviePosterDesignBinding
+import com.example.movieapp.utils.PicassoImage
 
-class SearchAdapter(var mContext:Context)
+class SearchAdapter(var mContext:Context,var list:List<Movie>)
     :RecyclerView.Adapter<SearchAdapter.SearchDesignKeeper>(){
         inner  class SearchDesignKeeper(design:SearchMoviePosterDesignBinding)
             : RecyclerView.ViewHolder(design.root){
@@ -30,10 +31,14 @@ class SearchAdapter(var mContext:Context)
     }
 
     override fun getItemCount(): Int {
-        return  10
+        return  list.count()
     }
 
     override fun onBindViewHolder(holder: SearchDesignKeeper, position: Int) {
-        holder.design.nameTxt.text = "Test Name"
+        val movie = list[position]
+        holder.design.nameTxt.text = movie.name
+        PicassoImage.covertToPicasso(movie.imageURL,holder.design.movieImage)
+        holder.design.categoryTxt.text = movie.categories.joinToString(", ")
+        holder.design.movieInfoTxt.text = movie.info
     }
 }
