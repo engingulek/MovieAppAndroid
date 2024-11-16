@@ -8,24 +8,17 @@ import retrofit2.Callback
 import retrofit2.Response
 
 interface SearchFragmentServiceInterface {
-    fun getMovies():MutableLiveData<List<Movie>>
+
     fun getMovieResult():MutableLiveData<Pair<List<Movie>,Boolean>>
     fun fetchAllMovie()
     fun searchMovie(text:String)
 }
 
 class SearchFragmentService(private val apiService: ApiService) : SearchFragmentServiceInterface  {
-    private var movieList : MutableLiveData<List<Movie>>
-    private var resultMovieList:MutableLiveData<Pair<List<Movie>,Boolean>>
 
-    init {
-        movieList = MutableLiveData()
-        resultMovieList =  MutableLiveData()
-    }
+    private var resultMovieList:MutableLiveData<Pair<List<Movie>,Boolean>> = MutableLiveData()
 
-    override fun getMovies(): MutableLiveData<List<Movie>> {
-        return  movieList
-    }
+
 
     override fun getMovieResult(): MutableLiveData<Pair<List<Movie>, Boolean>> {
         return  resultMovieList

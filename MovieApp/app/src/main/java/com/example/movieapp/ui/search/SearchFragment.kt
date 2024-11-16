@@ -33,7 +33,7 @@ class SearchFragment : Fragment() {
 
         viewModel.resultMovieList.observe(viewLifecycleOwner){
             val searchAdapter = SearchAdapter(requireContext(),it.first)
-            viewModel.createMessage(it)
+
             design.searchAdapter = searchAdapter
         }
 
@@ -62,7 +62,4 @@ class SearchFragment : Fragment() {
         val tempViewModel: SearchViewModelInterface by viewModels<SearchViewModel>()
         viewModel = tempViewModel
     }
-
-
-
 }
