@@ -31,8 +31,9 @@ class SearchFragment : Fragment() {
         design.searchRyc.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.VERTICAL,false)
 
-        viewModel.searchMovieList.observe(viewLifecycleOwner){
-            val searchAdapter = SearchAdapter(requireContext(),it)
+        viewModel.resultMovieList.observe(viewLifecycleOwner){
+            val searchAdapter = SearchAdapter(requireContext(),it.first)
+            viewModel.createMessage(it)
             design.searchAdapter = searchAdapter
         }
 
@@ -48,7 +49,11 @@ class SearchFragment : Fragment() {
             }
         })
 
+        viewModel.message.observe(viewLifecycleOwner){
+            design.message = getString(it.first)
+            design.messageState = it.second
 
+        }
         return design.root
     }
 

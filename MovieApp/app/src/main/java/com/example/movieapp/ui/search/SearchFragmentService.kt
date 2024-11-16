@@ -9,30 +9,43 @@ import retrofit2.Response
 
 interface SearchFragmentServiceInterface {
     fun getMovies():MutableLiveData<List<Movie>>
+    fun getMovieResult():MutableLiveData<Pair<List<Movie>,Boolean>>
     fun fetchAllMovie()
     fun searchMovie(text:String)
 }
 
 class SearchFragmentService(private val apiService: ApiService) : SearchFragmentServiceInterface  {
     private var movieList : MutableLiveData<List<Movie>>
+    private var resultMovieList:MutableLiveData<Pair<List<Movie>,Boolean>>
 
     init {
         movieList = MutableLiveData()
+        resultMovieList =  MutableLiveData()
     }
 
     override fun getMovies(): MutableLiveData<List<Movie>> {
         return  movieList
     }
 
+    override fun getMovieResult(): MutableLiveData<Pair<List<Movie>, Boolean>> {
+        return  resultMovieList
+    }
+
     override fun searchMovie(text:String) {
         apiService.searchMovie(text).enqueue(object :Callback<List<Movie>>{
             override fun onResponse(call: Call<List<Movie>>, response: Response<List<Movie>>) {
                 val list = response.body()
-                movieList.value = list ?: emptyList()
+
+                resultMovieList.value = Pair(list ?: emptyList(),false)
+                if (response.code() != 200) {
+                    resultMovieList.value = Pair(emptyList(),true)
+                }
             }
 
             override fun onFailure(call: Call<List<Movie>>, t: Throwable) {
-                movieList.value = emptyList()
+
+                resultMovieList.value = Pair(emptyList(),true)
+
             }
         })
     }
@@ -41,11 +54,14 @@ class SearchFragmentService(private val apiService: ApiService) : SearchFragment
         apiService.getAllMovie().enqueue(object :Callback<List<Movie>>{
             override fun onResponse(call: Call<List<Movie>>, response: Response<List<Movie>>) {
                 val list = response.body()
-                movieList.value = list ?: emptyList()
+                resultMovieList.value = Pair(list ?: emptyList(),false)
+                if (response.code() != 200) {
+                    resultMovieList.value = Pair(emptyList(),true)
+                }
             }
 
             override fun onFailure(call: Call<List<Movie>>, t: Throwable) {
-                movieList.value = emptyList()
+                resultMovieList.value = Pair(emptyList(),true)
             }
         })
     }
