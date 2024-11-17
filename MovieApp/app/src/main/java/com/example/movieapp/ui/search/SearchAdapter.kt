@@ -14,13 +14,9 @@ import com.example.movieapp.utils.toFragment
 
 class SearchAdapter(var mContext:Context,var list:List<Movie>)
     :RecyclerView.Adapter<SearchAdapter.SearchDesignKeeper>(){
-        inner  class SearchDesignKeeper(design:SearchMoviePosterDesignBinding)
+        inner  class SearchDesignKeeper(var design: SearchMoviePosterDesignBinding)
             : RecyclerView.ViewHolder(design.root){
-                var design:SearchMoviePosterDesignBinding
-                init {
-                    this.design = design
-                }
-            }
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchDesignKeeper {
         val layoutInflater = LayoutInflater.from(mContext)

@@ -17,13 +17,8 @@ class CategoryAdapter (var mContext: Context,
     var viewModel:HomeViewModelInterface
     )
     : RecyclerView.Adapter<CategoryAdapter.CategoryDesignKeeper>() {
-    inner class  CategoryDesignKeeper(design: CategoryDesignBinding)
+    inner class  CategoryDesignKeeper(var design: CategoryDesignBinding)
         : RecyclerView.ViewHolder(design.root){
-        var design: CategoryDesignBinding
-        init {
-            this.design = design
-        }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryDesignKeeper {
@@ -51,6 +46,5 @@ class CategoryAdapter (var mContext: Context,
         val design = viewModel.categoryDesignType(category.id)
         holder.design.categoryCardView.setCardBackgroundColor(ContextCompat.getColor(mContext,design.first))
         holder.design.categoryTxt.setTextColor(ContextCompat.getColor(mContext,design.second))
-
     }
 }

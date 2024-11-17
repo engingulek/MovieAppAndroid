@@ -31,7 +31,6 @@ class HomeViewModel @Inject constructor (private val service:HomeViewServiceInte
 
     override var categories = MutableLiveData<List<Category>>()
     override var movies = MutableLiveData<List<Movie>>()
-
     override var titles = Titles(R.string.app_name,R.string.categoryTitle,R.string.movieTitle)
     override var navSearchFragmentState: MutableLiveData<Boolean>
 
@@ -82,6 +81,5 @@ class HomeViewModel @Inject constructor (private val service:HomeViewServiceInte
                 movies.value = it.filter { it.categories.contains(category.name) }
             }
         }
-
     }
 }

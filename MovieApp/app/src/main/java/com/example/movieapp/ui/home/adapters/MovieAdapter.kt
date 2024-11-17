@@ -16,13 +16,8 @@ import com.example.movieapp.utils.toFragment
 
 class MovieAdapter(var mContext: Context,var list: List<Movie>)
     : RecyclerView.Adapter<MovieAdapter.MoviePosterDesignKeeper>() {
-        inner class  MoviePosterDesignKeeper(design:MoviePosterDesignBinding)
+        inner class  MoviePosterDesignKeeper(var design: MoviePosterDesignBinding)
             :RecyclerView.ViewHolder(design.root){
-                var design:MoviePosterDesignBinding
-                init {
-                    this.design = design
-                }
-
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviePosterDesignKeeper {
