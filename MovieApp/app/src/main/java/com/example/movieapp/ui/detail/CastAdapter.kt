@@ -7,8 +7,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.databinding.CastDesignBinding
+import com.example.movieapp.ui.detail.models.Cast
+import com.example.movieapp.utils.PicassoImage
 
-class CastAdapter (var mContext:Context)
+class CastAdapter (var mContext:Context,
+    var casts : List<Cast>)
     : RecyclerView.Adapter<CastAdapter.CastDesignKeeper>() {
         inner class CastDesignKeeper(design:CastDesignBinding)
             : RecyclerView.ViewHolder(design.root){
@@ -29,10 +32,13 @@ class CastAdapter (var mContext:Context)
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return casts.count()
     }
 
     override fun onBindViewHolder(holder: CastDesignKeeper, position: Int) {
-        holder.design.castNameTxt.text = "Adad"
+        val cast = casts[position]
+        PicassoImage.covertToPicasso(cast.imageUrl,holder.design.castImage)
+        holder.design.castNameTxt.text = cast.name
+        holder.design.roleNameTxt.text = cast.roleName
     }
 }

@@ -31,6 +31,11 @@ class DetailFragment : Fragment() {
         viewModel.getId(id)
         design.casrRyc.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,false)
+        viewModel.casts.observe(viewLifecycleOwner){
+            val castAdapter = CastAdapter(requireContext(),it)
+            design.castAdapter = castAdapter
+        }
+
        viewModel.movieDetail.observe(viewLifecycleOwner){
            design.nameTxt.text = it.name
            PicassoImage.covertToPicasso(it.detailimage,design.moveiDetailImage)
