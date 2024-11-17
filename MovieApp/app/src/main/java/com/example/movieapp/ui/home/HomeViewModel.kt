@@ -1,20 +1,17 @@
 package com.example.movieapp.ui.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.movieapp.R
 
 import com.example.movieapp.ui.home.models.Category
+import com.example.movieapp.utils.Titles
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import java.lang.ref.WeakReference
 import javax.inject.Inject
 
 interface  HomeViewModelInterface {
     var categories :MutableLiveData<List<Category>>
-    var titles:Titles
+    var titles: Titles
     var navSearchFragmentState:MutableLiveData<Boolean>
     var searchText:String
     fun onClickCategory(id:Int)

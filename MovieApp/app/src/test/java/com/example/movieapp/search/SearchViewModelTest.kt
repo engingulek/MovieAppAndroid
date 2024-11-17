@@ -73,7 +73,7 @@ class SearchViewModelTest {
 
 
         verify(mockObserver).onChanged(
-            Pair(  R.string.emptyMovieList , true)
+            Pair(  R.string.errorMessage , true)
         )
     }
 
