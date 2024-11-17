@@ -1,4 +1,4 @@
-package com.example.movieapp.ui.home
+package com.example.movieapp.utils
 
 data class Titles(
     val appTitle: Int,

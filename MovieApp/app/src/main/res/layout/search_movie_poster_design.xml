@@ -9,6 +9,7 @@
     android:background="@color/backColor">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/searchCardView"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:background="@color/backColor"
@@ -21,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/backColor">
+
 
             <ImageView
                 android:id="@+id/movieImage"

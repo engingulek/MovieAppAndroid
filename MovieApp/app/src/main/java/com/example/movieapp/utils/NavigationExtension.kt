@@ -11,3 +11,7 @@ fun  Navigation.toFragment(view:View,directionId:Int) {
 fun  Navigation.toFragment(view:View,directionId:NavDirections) {
     findNavController(view).navigate(directionId)
 }
+
+fun Navigation.popFragment(view:View){
+    findNavController(view).popBackStack()
+}

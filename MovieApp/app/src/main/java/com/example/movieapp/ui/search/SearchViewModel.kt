@@ -14,7 +14,7 @@ interface  SearchViewModelInterface {
     var resultMovieList:MutableLiveData<Pair<List<Movie>,Boolean>>
     var message:MutableLiveData<Pair<Int,Boolean>>
     fun getSearchText(text:String)
-    fun createMessage(result:Pair<List<Movie>,Boolean>)
+
 }
 
 @HiltViewModel
@@ -27,7 +27,7 @@ class SearchViewModel @Inject constructor(private val service: SearchFragmentSer
 
     override fun getSearchText(text: String) {
         if (text.isEmpty()) {
-            message.value = Pair(R.string.emptyDefault, false)
+            //message.value = Pair(R.string.emptyDefault, false)
             service.fetchAllMovie()
 
 
@@ -45,10 +45,10 @@ class SearchViewModel @Inject constructor(private val service: SearchFragmentSer
         }
     }
 
-    override fun createMessage(result: Pair<List<Movie>, Boolean>) {
+   private  fun createMessage(result: Pair<List<Movie>, Boolean>) {
         if(result.first.isEmpty()){
             if(result.second){
-                message.value = Pair(R.string.emptyMovieList, true)
+                message.value = Pair(R.string.errorMessage, true)
             }else{
                 message.value = Pair(R.string.emptyMovieList, true)
             }

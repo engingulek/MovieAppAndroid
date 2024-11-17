@@ -1,6 +1,8 @@
 package com.example.movieapp.retrofit
 
 
+import com.example.movieapp.ui.detail.models.Cast
+import com.example.movieapp.ui.detail.models.MovieDetail
 import com.example.movieapp.ui.home.models.Category
 import com.example.movieapp.ui.search.Movie
 
@@ -15,4 +17,8 @@ interface ApiService {
     fun getAllMovie(): Call<List<Movie>>
     @GET("movie/searchMovie")
     fun searchMovie(@Query("text") text:String) : Call<List<Movie>>
+    @GET("movie/movieDetail")
+    fun getDetail(@Query("id") id:Int) : Call<MovieDetail>
+    @GET("casts/getAl")
+    fun getCastsByMovieId(@Query("movieId") id:Int) : Call<List<Cast>>
 }

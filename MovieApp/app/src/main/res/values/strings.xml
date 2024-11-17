@@ -10,4 +10,6 @@
     <string name="emptyMovieList">Movie not fount</string>
     <string name="errorMessage">Something went wrong</string>
     <string name="emptyDefault">""</string>
+    <string name="errorTitle">Error</string>
+    <string name="errorButtonTitle">Ok</string>
 </resources>

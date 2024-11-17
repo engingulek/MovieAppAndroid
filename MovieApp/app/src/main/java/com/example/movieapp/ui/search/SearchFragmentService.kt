@@ -18,8 +18,6 @@ class SearchFragmentService(private val apiService: ApiService) : SearchFragment
 
     private var resultMovieList:MutableLiveData<Pair<List<Movie>,Boolean>> = MutableLiveData()
 
-
-
     override fun getMovieResult(): MutableLiveData<Pair<List<Movie>, Boolean>> {
         return  resultMovieList
     }

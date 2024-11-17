@@ -2,6 +2,8 @@ package com.example.movieapp.di
 
 import com.example.movieapp.retrofit.ApiService
 import com.example.movieapp.retrofit.ApiUtils
+import com.example.movieapp.ui.detail.MovieDetailService
+import com.example.movieapp.ui.detail.MovieDetailServiceInterface
 import com.example.movieapp.ui.home.HomeFragment
 
 import com.example.movieapp.ui.home.HomeViewService
@@ -31,6 +33,13 @@ class AppModule {
     @Singleton
     fun provideSearchFragmentService(apiService: ApiService) : SearchFragmentServiceInterface {
         val service : SearchFragmentServiceInterface = SearchFragmentService(apiService)
+        return  service
+    }
+
+    @Provides
+    @Singleton
+    fun provideDetailService(apiService: ApiService) : MovieDetailServiceInterface {
+        val service : MovieDetailServiceInterface = MovieDetailService(apiService)
         return  service
     }
 
