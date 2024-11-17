@@ -4,6 +4,7 @@ package com.example.movieapp.retrofit
 import com.example.movieapp.ui.detail.models.Cast
 import com.example.movieapp.ui.detail.models.MovieDetail
 import com.example.movieapp.ui.home.models.Category
+import com.example.movieapp.ui.home.models.HomeMovie
 import com.example.movieapp.ui.search.Movie
 
 import retrofit2.Call
@@ -21,4 +22,7 @@ interface ApiService {
     fun getDetail(@Query("id") id:Int) : Call<MovieDetail>
     @GET("casts/getAl")
     fun getCastsByMovieId(@Query("movieId") id:Int) : Call<List<Cast>>
+
+
+
 }
