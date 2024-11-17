@@ -73,10 +73,11 @@ class DetailFragment : Fragment() {
         AlertDialog.Builder(requireContext())
             .setTitle(getString(alertMessageType.title))
             .setMessage(getString(alertMessageType.message))
-            .setPositiveButton(getString(alertMessageType.title)) { dialog, _ ->
+            .setPositiveButton(getString(alertMessageType.buttonText)) { dialog, _ ->
 
-                dialog.dismiss()
+
                 Navigation.popFragment(requireView())
+                dialog.dismiss()
             }
             .show()
     }

@@ -19,9 +19,6 @@ interface  MovieDetailViewModelInterface {
     fun getId(id:Int)
 }
 
-
-
-
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(private val service:MovieDetailServiceInterface) :
  ViewModel(),MovieDetailViewModelInterface{
