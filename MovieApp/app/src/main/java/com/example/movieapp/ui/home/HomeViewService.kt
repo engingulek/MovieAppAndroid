@@ -11,7 +11,6 @@ import retrofit2.Response
 interface HomeViewServiceInterface {
      fun getCategories(): MutableLiveData<List<Category>>
      fun fetchCategories()
-
      fun getAllMovie() :  MutableLiveData<List<Movie>>
      fun fetchMovies()
 }

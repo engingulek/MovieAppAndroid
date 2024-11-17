@@ -22,7 +22,9 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        design = DataBindingUtil.inflate(inflater,R.layout.fragment_search, container, false)
+        design = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_search,
+            container, false)
         val bundle:SearchFragmentArgs by  navArgs()
         val searchText = bundle.searchText
         viewModel.getSearchText(searchText)
@@ -33,13 +35,15 @@ class SearchFragment : Fragment() {
 
         viewModel.resultMovieList.observe(viewLifecycleOwner){
             val searchAdapter = SearchAdapter(requireContext(),it.first)
-
             design.searchAdapter = searchAdapter
         }
 
         design.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return  false
+                query?.let {
+                    viewModel.getSearchText(it)
+                }
+                return  true
             }
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {

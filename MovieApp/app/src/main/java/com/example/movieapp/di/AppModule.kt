@@ -21,6 +21,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class AppModule {
 
+    // ProvideApiService
+    @Provides
+    @Singleton
+    fun provideApiService() : ApiService {
+        return  ApiUtils.createService()
+    }
+
+    // ProvideHomeViewService
     @Provides
     @Singleton
     fun provideHomeViewService(apiService: ApiService): HomeViewServiceInterface {
@@ -28,7 +36,7 @@ class AppModule {
         return service
     }
 
-
+    // ProvideSearchFragmentService
     @Provides
     @Singleton
     fun provideSearchFragmentService(apiService: ApiService) : SearchFragmentServiceInterface {
@@ -36,17 +44,11 @@ class AppModule {
         return  service
     }
 
+    // ProvideDetailService
     @Provides
     @Singleton
     fun provideDetailService(apiService: ApiService) : MovieDetailServiceInterface {
         val service : MovieDetailServiceInterface = MovieDetailService(apiService)
         return  service
-    }
-
-
-    @Provides
-    @Singleton
-    fun provideApiService() : ApiService {
-        return  ApiUtils.createService()
     }
 }

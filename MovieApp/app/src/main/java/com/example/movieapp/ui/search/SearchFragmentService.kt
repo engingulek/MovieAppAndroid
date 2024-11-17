@@ -32,9 +32,7 @@ class SearchFragmentService(private val apiService: ApiService) : SearchFragment
                     resultMovieList.value = Pair(emptyList(),true)
                 }
             }
-
             override fun onFailure(call: Call<List<Movie>>, t: Throwable) {
-
                 resultMovieList.value = Pair(emptyList(),true)
 
             }
@@ -50,7 +48,6 @@ class SearchFragmentService(private val apiService: ApiService) : SearchFragment
                     resultMovieList.value = Pair(emptyList(),true)
                 }
             }
-
             override fun onFailure(call: Call<List<Movie>>, t: Throwable) {
                 resultMovieList.value = Pair(emptyList(),true)
             }

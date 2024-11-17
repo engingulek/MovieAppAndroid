@@ -27,21 +27,14 @@ class SearchViewModel @Inject constructor(private val service: SearchFragmentSer
 
     override fun getSearchText(text: String) {
         if (text.isEmpty()) {
-            //message.value = Pair(R.string.emptyDefault, false)
-            service.fetchAllMovie()
-
-
-        } else {
+            service.fetchAllMovie()}
+        else {
             service.searchMovie(text)
-
         }
 
-
        service.getMovieResult().observeForever { result ->
-
             resultMovieList.value = result
            createMessage(result)
-
         }
     }
 
@@ -55,6 +48,5 @@ class SearchViewModel @Inject constructor(private val service: SearchFragmentSer
         }else{
             message.value = Pair(R.string.emptyDefault, false)
         }
-
     }
 }

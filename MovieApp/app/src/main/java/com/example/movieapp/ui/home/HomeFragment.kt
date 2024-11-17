@@ -38,7 +38,10 @@ class HomeFragment : Fragment() {
 
         design.movieSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return  false
+                query?.let {
+                    viewModel.searchViewOnQueryTextListener(it)
+                }
+                return true
             }
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
@@ -71,7 +74,6 @@ class HomeFragment : Fragment() {
         design.categoryTitleTxt.text = getString(titles.categoryTitle)
 
     }
-
 
   private fun configureAdapters() {
 
