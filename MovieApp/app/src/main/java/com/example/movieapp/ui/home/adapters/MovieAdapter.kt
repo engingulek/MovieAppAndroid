@@ -39,7 +39,7 @@ class MovieAdapter(var mContext: Context,var list: List<Movie>)
         holder.design.movieNameTxt.text = movie.name
         PicassoImage.covertToPicasso(movie.imageURL,holder.design.moviePosterImage)
         holder.design.cardView.setOnClickListener {
-            val nav = HomeFragmentDirections.toDetailFromHome(1)
+            val nav = HomeFragmentDirections.toDetailFromHome(movie.id)
             Navigation.toFragment(it,nav)
         }
     }

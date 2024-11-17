@@ -27,7 +27,7 @@ class MovieDetailViewModel @Inject constructor(private val service:MovieDetailSe
     override var message:MutableLiveData<Pair<AlertMessageType,Boolean>> = MutableLiveData(Pair(AlertMessageType.defaultAlertMessage,false))
 
     override fun getId(id: Int) {
-        service.fetchMovieDetail(1)
+        service.fetchMovieDetail(id)
         movieDetail = service.getMovieDetail()
         service.fetchCast(id)
 

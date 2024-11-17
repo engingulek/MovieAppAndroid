@@ -24,7 +24,7 @@ interface ApiService {
     @GET("movie/movieDetail")
     fun getDetail(@Query("id") id:Int) : Call<MovieDetail>
 
-    @GET("casts/getAl")
+    @GET("casts/getAll")
     fun getCastsByMovieId(@Query("movieId") id:Int) : Call<List<Cast>>
 
 
