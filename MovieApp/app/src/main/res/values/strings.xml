@@ -5,8 +5,7 @@
     <string name="testmoviename">TestMovieName</string>
     <string name="show_all">Show All</string>
     <string name="categoryTitle">Categories</string>
-    <string name="trendTitle">Trends</string>
-    <string name="forYouTitle">For You</string>
+    <string name="movieTitle">Movies</string>
     <string name="emptyMovieList">Movie not fount</string>
     <string name="errorMessage">Something went wrong</string>
     <string name="emptyDefault">""</string>

@@ -45,7 +45,7 @@ class CategoryAdapter (var mContext: Context,
         val category =  list[position]
         holder.design.category =  category
         holder.design.categoryCardView.setOnClickListener {
-            viewModel.onClickCategory(category.id)
+            viewModel.onClickCategory(category)
             notifyDataSetChanged()
         }
         val design = viewModel.categoryDesignType(category.id)
@@ -53,7 +53,4 @@ class CategoryAdapter (var mContext: Context,
         holder.design.categoryTxt.setTextColor(ContextCompat.getColor(mContext,design.second))
 
     }
-
-
-
 }

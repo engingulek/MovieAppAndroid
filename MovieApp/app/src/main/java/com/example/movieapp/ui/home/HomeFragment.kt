@@ -1,7 +1,6 @@
 package com.example.movieapp.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,15 +9,15 @@ import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentHomeBinding
 import com.example.movieapp.ui.home.adapters.CategoryAdapter
-import com.example.movieapp.ui.home.adapters.ForYouMovieAdapter
-import com.example.movieapp.ui.home.adapters.TrendingMovieAdapter
-import com.example.movieapp.ui.search.SearchFragment
+import com.example.movieapp.ui.home.adapters.MovieAdapter
 import com.example.movieapp.utils.toFragment
 
 
@@ -68,30 +67,27 @@ class HomeFragment : Fragment() {
     private fun setTitles() {
         val titles = viewModel.titles
         design.appTitleTxt.text = getString(titles.appTitle)
-        design.trendingTitleTxt.text = getString(titles.trendTitle)
+        design.moviesTxtTitle.text = getString(titles.movieTitle)
         design.categoryTitleTxt.text = getString(titles.categoryTitle)
-        design.forYouTitle.text = getString(titles.forYouTitle)
+
     }
 
 
   private fun configureAdapters() {
-        design.trendingMovieRyc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
+      design.categoryRyc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
       viewModel.categories.observe(viewLifecycleOwner){
           val categoryAdapter = CategoryAdapter(requireContext(),it,viewModel)
           design.categoryAdapter = categoryAdapter
       }
-        val trendingMovieAdapter = TrendingMovieAdapter(requireContext())
-        design.trendingMovieAdapter = trendingMovieAdapter
 
-        design.categoryRyc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-
-        design.forYouRyc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        val forYouAdapter = ForYouMovieAdapter(requireContext())
-        design.forYouAdapter = forYouAdapter
+      design.movieRyc.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+      viewModel.movies.observe(viewLifecycleOwner){
+          val movieAdapter = MovieAdapter(requireContext(),it)
+          design.movieAdapter = movieAdapter
+          movieAdapter.reloadAdapter()
+      }
     }
-
-
-
 }
 
 

@@ -23,8 +23,7 @@ class HomeViewModelTest {
 
         assertEquals(R.string.app_name, viewModel.titles.appTitle)
         assertEquals(R.string.categoryTitle, viewModel.titles.categoryTitle)
-        assertEquals(R.string.trendTitle, viewModel.titles.trendTitle)
-        assertEquals(R.string.forYouTitle, viewModel.titles.forYouTitle)
+        assertEquals(R.string.movieTitle, viewModel.titles.movieTitle)
     }
 
     @Test
